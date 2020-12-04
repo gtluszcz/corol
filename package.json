@@ -1,0 +1,13 @@
+{
+  "name": "corol",
+  "version": "0.0.1",
+  "description": "Library for simple color format conversions",
+  "main": "index.js",
+  "repository": {
+    "url": "https://github.com/gtluszcz/corol",
+    "type": "git"
+  },
+  "author": "Grzegorz Tłuszcz",
+  "license": "BSD-3-Clause",
+  "private": false
+}
