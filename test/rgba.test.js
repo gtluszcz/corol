@@ -102,6 +102,12 @@ describe('RGBA constructor', () => {
 
 describe('RGBA field setters', () => {
     ['r','g','b','a'].forEach(field => {
+        test(`doesn't round ${field}`, () => {
+            const rgba = dummyRgba()
+            rgba[field] = 233.543
+            expect(rgba[field]).toBe(233.543)
+        });
+
         test(`doesn't throw when setting proper ${field}`, () => {
             const rgba = dummyRgba()
             expect(() => {rgba[field] = 100}).not.toThrow()
@@ -179,5 +185,34 @@ describe('RGBA hex', () => {
     test('returns proper hexcode for lime color', () => {
         const rgba = new RGBA({r: 155, g: 245, b: 66})
         expect(rgba.hex).toBe('#9bf542')
+    })
+
+    test('returns proper hexcode for float lime color', () => {
+        const rgba = new RGBA({r: 155.3, g: 245.2, b: 66.98})
+        expect(rgba.hex).toBe('#9bf542')
+    })
+})
+
+describe('RGBA rounded', () => {
+    test('returns different instance', () => {
+        const rgba = new RGBA({r: 155.6, g: 245.2, b: 66.98, a: 233.21})
+        const rounded = rgba.rounded
+        rounded.r = 200
+        rounded.g = 0
+        rounded.b = 0
+        rounded.a = 0
+        expect(rgba.r).toBe(155.6)
+        expect(rgba.g).toBe(245.2)
+        expect(rgba.b).toBe(66.98)
+        expect(rgba.a).toBe(233.21)
+    })
+
+    test('floors properties', () => {
+        const rgba = new RGBA({r: 155.6, g: 245.2, b: 66.98, a: 233.21})
+        const rounded = rgba.rounded
+        expect(rounded.r).toBe(155)
+        expect(rounded.g).toBe(245)
+        expect(rounded.b).toBe(66)
+        expect(rounded.a).toBe(233)
     })
 })

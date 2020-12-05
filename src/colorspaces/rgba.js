@@ -24,7 +24,7 @@ export default class RGBA{
     set r(value){
         const tmp = Number(value)
         if (isNumber255(tmp)){
-            this._r = Math.floor(tmp)
+            this._r = tmp
         } else {
             throw new ColorError(`can't set r to ${value}`)
         }
@@ -33,7 +33,7 @@ export default class RGBA{
     set g(value){
         const tmp = Number(value)
         if (isNumber255(tmp)){
-            this._g = Math.floor(tmp)
+            this._g = tmp
         } else {
             throw new ColorError(`can't set g to ${value}`)
         }
@@ -42,7 +42,7 @@ export default class RGBA{
     set b(value){
         const tmp = Number(value)
         if (isNumber255(tmp)){
-            this._b = Math.floor(tmp)
+            this._b = tmp
         } else {
             throw new ColorError(`can't set b to ${value}`)
         }
@@ -51,7 +51,7 @@ export default class RGBA{
     set a(value){
         const tmp = Number(value)
         if (isNumber255(tmp)){
-            this._a = Math.floor(tmp)
+            this._a = tmp
         } else {
             throw new ColorError(`can't set a to ${value}`)
         }
@@ -71,9 +71,21 @@ export default class RGBA{
         } 
     }
 
-    get hex(){
-        return '#' + to2DigitHex(this.r) + to2DigitHex(this.g) + to2DigitHex(this.b)
+    get rounded(){
+        return {
+            r: Math.floor(this.r), 
+            g: Math.floor(this.g),
+            b: Math.floor(this.b),
+            a: Math.floor(this.a)
+        }
     }
+
+    get hex(){
+        const rounded = this.rounded
+        return '#' + to2DigitHex(rounded.r) + to2DigitHex(rounded.g) + to2DigitHex(rounded.b)
+    }
+
+    
 
     constructor(arg){
         const {r,g,b,a} = colorValues(arg)
