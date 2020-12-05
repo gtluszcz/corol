@@ -99,7 +99,7 @@ export default class RGBA{
             this.a = a || 255
         } catch (e) {
             if (e instanceof ColorError) {
-                throw new ColorError(`Can't instantiate RGBA color from argument ${arg}`)
+                throw new ColorError(`Can't instantiate RGBA color from argument ${JSON.stringify(arg)}`)
             } else {
                 throw e
             }
