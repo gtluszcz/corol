@@ -26,7 +26,7 @@ export default class RGBA{
         if (isNumber255(tmp)){
             this._r = tmp
         } else {
-            throw new ColorError(`can't set r to ${value}`)
+            throw new ColorError(`can't set r to ${value}. Should be number in range [0, 255]`)
         }
     }
 
@@ -35,7 +35,7 @@ export default class RGBA{
         if (isNumber255(tmp)){
             this._g = tmp
         } else {
-            throw new ColorError(`can't set g to ${value}`)
+            throw new ColorError(`can't set g to ${value}. Should be number in range [0, 255]`)
         }
     }
 
@@ -44,7 +44,7 @@ export default class RGBA{
         if (isNumber255(tmp)){
             this._b = tmp
         } else {
-            throw new ColorError(`can't set b to ${value}`)
+            throw new ColorError(`can't set b to ${value}. Should be number in range [0, 255]`)
         }
     }
 
@@ -53,7 +53,7 @@ export default class RGBA{
         if (isNumber255(tmp)){
             this._a = tmp
         } else {
-            throw new ColorError(`can't set a to ${value}`)
+            throw new ColorError(`can't set a to ${value}. Should be number in range [0, 255]`)
         }
     }
 
@@ -86,7 +86,10 @@ export default class RGBA{
     }
 
     
-
+    // r in range [0, 255]
+    // g in range [0, 255]
+    // b in range [0, 255]
+    // a in range [0, 255]
     constructor(arg){
         const {r,g,b,a} = colorValues(arg)
         try {

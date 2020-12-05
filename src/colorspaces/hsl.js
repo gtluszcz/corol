@@ -15,7 +15,7 @@ export default class HSL{
         if (isNumber360(tmp)){
             this._h = tmp
         } else {
-            throw new ColorError(`can't set h to ${value}`)
+            throw new ColorError(`can't set h to ${value}. Should be number in range [0, 360]`)
         }
     }
 
@@ -24,7 +24,7 @@ export default class HSL{
         if (isNumber01(tmp)){
             this._s = tmp
         } else {
-            throw new ColorError(`can't set s to ${value}`)
+            throw new ColorError(`can't set s to ${value}. Should be number in range [0, 1]`)
         }
     }
 
@@ -33,7 +33,7 @@ export default class HSL{
         if (isNumber01(tmp)){
             this._l = tmp
         } else {
-            throw new ColorError(`can't set l to ${value}`)
+            throw new ColorError(`can't set l to ${value}. Should be number in range [0, 1]`)
         }
     }
 
@@ -57,6 +57,9 @@ export default class HSL{
         }
     }
 
+    // h in range [0, 360]
+    // s in range [0, 1]
+    // l in range [0, 1]
     constructor(arg){
         const {h,s,l} = colorValues(arg)
         try {
