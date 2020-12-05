@@ -31,12 +31,13 @@ describe('RGBA constructor', () => {
 
         test('throws when creating invalid RGBA instance', () => {
             expect(() => {
-                rgba = new RGBA({r: -1, g: 100, b: 100, a: 100})
+                new RGBA({r: -1, g: 100, b: 100, a: 100})
             }).toThrow(ColorError)
         });
     })
 
     describe('when instantiating using array', ()=>{
+
         test('sets default a', () => {
             let rgba = null
             expect(() => {
@@ -63,9 +64,39 @@ describe('RGBA constructor', () => {
     
         test('throws when creating invalid RGBA instance', () => {
             expect(() => {
-                rgba = new RGBA([100, NaN, 100, 100])
+                new RGBA([100, NaN, 100, 100])
             }).toThrow(ColorError)
         });
+    })
+
+    describe('when instantiating using hex', ()=>{
+        test('creates valid RGBA instance', () => {
+            let rgba = null
+            expect(() => {
+                rgba = new RGBA('#646464')
+            }).not.toThrow()
+            expect(rgba.r).toBe(100);
+            expect(rgba.g).toBe(100);
+            expect(rgba.b).toBe(100);
+            expect(rgba.a).toBe(255);
+        });
+
+        test('throws when using hexString without #', () => {
+            expect(() => {
+                rgba = new RGBA('646464')
+            }).toThrow(ColorError)
+        });
+
+        test('throws when using to long hexString', () => {
+            expect(() => {
+                rgba = new RGBA('#646464d')
+            }).toThrow(ColorError)
+        });
+
+        test('returns the same hex from which was created', ()=>{
+            const rgba = new RGBA('#646464')
+            expect(rgba.hex).toBe('#646464');
+        })
     })
 })
 
@@ -132,4 +163,21 @@ describe('RGBA normalized', () => {
         expect(rgba.normalized.b).toBeGreaterThanOrEqual(0)
         expect(rgba.normalized.a).toBeGreaterThanOrEqual(0)
     });
+})
+
+describe('RGBA hex', () => {
+    test('returns proper hexcode for white color', () => {
+        const rgba = new RGBA({r: 255, g: 255, b: 255})
+        expect(rgba.hex).toBe('#ffffff')
+    })
+
+    test('returns proper hexcode for black color', () => {
+        const rgba = new RGBA({r: 0, g: 0, b: 0})
+        expect(rgba.hex).toBe('#000000')
+    })
+
+    test('returns proper hexcode for lime color', () => {
+        const rgba = new RGBA({r: 155, g: 245, b: 66})
+        expect(rgba.hex).toBe('#9bf542')
+    })
 })
