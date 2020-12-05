@@ -49,6 +49,14 @@ export default class HSL{
         } 
     }
 
+    get rounded(){
+        return {
+            h: Math.floor(this.h), 
+            s: this.s,
+            l: this.l
+        }
+    }
+
     constructor(arg){
         const {h,s,l} = colorValues(arg)
         try {

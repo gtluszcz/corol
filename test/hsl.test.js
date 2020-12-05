@@ -137,3 +137,24 @@ describe('HSL normalized', () => {
         expect(hsl.normalized.l).toBeGreaterThanOrEqual(0)
     });
 })
+
+describe('HSL rounded', () => {
+    test('returns different instance', () => {
+        const hsl = new HSL({h: 155.6, s: 0.452, l: 0.9876})
+        const rounded = hsl.rounded
+        rounded.h = 200
+        rounded.s = 0
+        rounded.l = 0
+        expect(hsl.h).toBe(155.6)
+        expect(hsl.s).toBe(0.452)
+        expect(hsl.l).toBe(0.9876)
+    })
+
+    test('floors properties', () => {
+        const hsl = new HSL({h: 155.6, s: 0.452, l: 0.9876})
+        const rounded = hsl.rounded
+        expect(rounded.h).toBe(155)
+        expect(rounded.s).toBe(0.452)
+        expect(rounded.l).toBe(0.9876)
+    })
+})
