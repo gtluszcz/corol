@@ -77,10 +77,18 @@ export default class RGBA{
 
     constructor(arg){
         const {r,g,b,a} = colorValues(arg)
-        this.r = r
-        this.g = g
-        this.b = b
-        this.a = a || 255
+        try {
+            this.r = r
+            this.g = g
+            this.b = b
+            this.a = a || 255
+        } catch (e) {
+            if (e instanceof ColorError) {
+                throw new ColorError(`Can't instantiate RGBA color from argument ${arg}`)
+            } else {
+                throw e
+            }
+        }
     }
 
 }
