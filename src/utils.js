@@ -7,6 +7,10 @@ export function isNumber255(num){
     return (typeof num == 'number') && num >= 0 && num <= 255
 }
 
+export function isNumber360(num){
+    return (typeof num == 'number') && num >= 0 && num <= 360
+}
+
 export function isNumber01(num){
     return (typeof num == 'number') && num >= 0 && num <= 1
 }
