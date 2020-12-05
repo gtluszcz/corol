@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/gtluszcz/corol#readme",
   "scripts": {
+    "test": "jest",
     "build": "npm run build:umd & npm run build:es",
     "build:umd": "node_modules/.bin/rollup --config rollup.config.js --format umd --file dist/index.umd.js",
     "build:es": "node_modules/.bin/rollup --config rollup.config.js --format es --file dist/index.esm.js"
